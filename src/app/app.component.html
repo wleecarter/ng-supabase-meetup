@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" fxLayoutAlign="space-between center">
+  <span>ng-supabase-meetup</span>
+  <span>
+    <button 
+      *ngIf="isAuthenticated$ | async" 
+      mat-icon-button 
+      [matMenuTriggerFor]="menu" >
+      <mat-icon>face</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button         
+        mat-button
+        (click)="logout()">
+        <span>Logout</span>
+      </button>
+    </mat-menu>    
+  </span>
+</mat-toolbar>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

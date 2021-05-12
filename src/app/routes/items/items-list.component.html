@@ -1,0 +1,14 @@
+<h1>My Wonderful Wish List</h1>
+<div>
+  <button 
+    mat-mini-fab
+    color="primary"
+    (click)="openDialog()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of items$ | async">
+    <app-item [item]="item"></app-item>
+  </div>
+</div>
