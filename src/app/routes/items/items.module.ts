@@ -1,5 +1,3 @@
-import { NgxFileDropModule } from 'ngx-file-drop';
-
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
@@ -11,11 +9,6 @@ import { ItemListRoutingModule } from './items-routing.module';
 
 @NgModule({
   declarations: [AddEditItemComponent, ItemListComponent, ItemComponent],
-  imports: [
-    CommonModule,
-    NgxFileDropModule,
-    SharedModule,
-    ItemListRoutingModule,
-  ],
+  imports: [CommonModule, SharedModule, ItemListRoutingModule],
 })
 export class ItemListModule {}
