@@ -8,7 +8,7 @@
   </button>
 </div>
 <div fxLayout="row wrap" fxLayoutGap="16px grid">
-  <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of items$ | async">
+  <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" *ngFor="let item of (items$ | async)">
     <app-item [item]="item"></app-item>
   </div>
 </div>

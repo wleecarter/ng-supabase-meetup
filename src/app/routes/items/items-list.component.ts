@@ -22,7 +22,6 @@ export class ItemListComponent {
 
   public openDialog(): void {
     const dialogData: AddEditDialogData = {
-      isEditMode: false,
       item: null,
     };
     this.dialog.open(AddEditItemComponent, {

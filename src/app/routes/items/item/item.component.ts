@@ -18,7 +18,6 @@ export class ItemComponent {
 
   public edit(): void {
     const dialogData: AddEditDialogData = {
-      isEditMode: true,
       item: this.item,
     };
     this.dialog.open(AddEditItemComponent, {

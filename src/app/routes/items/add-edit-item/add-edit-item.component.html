@@ -1,4 +1,4 @@
-<h2>{{ pageTitle }}</h2>
+<h2>{{ this.isEditMode ? 'Edit Item' : 'Add Item' }}</h2>
 <form [formGroup]="form">
   <div>
     <mat-form-field appearance="outline" class="full-width">
@@ -10,12 +10,12 @@
       <textarea matInput formControlName="details" name="details" placeholder="Details"></textarea>
     </mat-form-field>
   </div>
-  <div>    
-    <img mat-card-image [src]="url.value">
+  <div>
+    <img mat-card-image [src]="imageSrc$ | async">
   </div>
   <div>
     <mat-form-field appearance="outline" class="full-width">
-      <input type="url" matInput formControlName="imageUrl" name="imageUrl" placeholder="Image URL" #url>
+      <input type="url" matInput formControlName="imageUrl" name="imageUrl" placeholder="Image URL">
     </mat-form-field>
   </div>
   <div fxLayoutAlign="end center" fxLayoutGap="8px">
@@ -23,21 +23,11 @@
       Cancel
     </button>
     <button 
-      *ngIf="!data.isEditMode"
       mat-raised-button
       color="primary" 
       [disabled]="form.invalid" 
       (click)="save()">
-      Save
-    </button>
-    <button 
-      *ngIf="data.isEditMode"
-      mat-raised-button 
-      cdkFocusInitial
-      color="primary" 
-      [disabled]="form.invalid" 
-      (click)="update()">
-      Update
+      {{ this.isEditMode ? 'Update' : 'Save' }}
     </button>
   </div>
 </form>
