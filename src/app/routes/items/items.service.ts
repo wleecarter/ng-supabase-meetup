@@ -1,12 +1,11 @@
-import { BehaviorSubject, defer, EMPTY, from, merge, Observable, of } from 'rxjs';
+import { BehaviorSubject, defer, from, merge } from 'rxjs';
+import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { catchError, filter, first, map, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-
-import { environment } from '../../../environments/environment';
-import { NotificationsService } from '../../shared/services/notifications.service';
 import { Item } from './models/item.model';
+import { NotificationsService } from '../../shared/services/notifications.service';
+import { environment } from '../../../environments/environment';
 
 const ITEMS_TABLE = 'items';
 
@@ -105,7 +104,12 @@ export class ItemsService {
   }
 
   private async getItems(): Promise<Item[]> {
-    const { data } = await this.supabase.from<Item>(ITEMS_TABLE).select('*');
+    const { data, error } = await this.supabase
+      .from<Item>(ITEMS_TABLE)
+      .select('*');
+    if (error) {
+      this.notify('Unable to get items');
+    }
     this.itemChangesSubject.next(data);
     return data;
   }
